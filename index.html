@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>XENO Studio — Game Dev Community</title>
+<meta name="description" content="XENO Studio — building games across Roblox and beyond. Follow live announcements, ship logs, and join the community." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- Custom cursor glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- Ambient background canvas (particles) -->
+<canvas id="particles"></canvas>
+
+<!-- Drifting light streaks -->
+<div class="streaks" aria-hidden="true">
+  <span class="streak streak-1"></span>
+  <span class="streak streak-2"></span>
+  <span class="streak streak-3"></span>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-mark">
+      <span class="mark-shard"></span>
+      XENO<span class="mark-dim">.STUDIO</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#feed">Feed</a>
+      <a href="#projects">Projects</a>
+      <a href="#team">Team</a>
+      <a href="#community">Community</a>
+      <a href="#join" class="nav-cta">Join the Server</a>
+    </nav>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#about">About</a>
+    <a href="#feed">Feed</a>
+    <a href="#projects">Projects</a>
+    <a href="#team">Team</a>
+    <a href="#community">Community</a>
+    <a href="#join" class="nav-cta">Join the Server</a>
+  </div>
+</header>
+
+<!-- LIVE ANNOUNCEMENT TICKER -->
+<div class="ticker" aria-label="Latest announcements">
+  <div class="ticker-tag"><span class="dot-live"></span>LIVE FEED</div>
+  <div class="ticker-track">
+    <div class="ticker-row" id="tickerRow">
+      <!-- duplicated via JS for seamless loop -->
+      <span>UPDATE — Frostbreak Arena v0.9 patch notes are live</span>
+      <span class="sep">//</span>
+      <span>NEW — Rift Runners closed playtest opens this weekend</span>
+      <span class="sep">//</span>
+      <span>MILESTONE — Drift Garage hits 1.2M visits on Roblox</span>
+      <span class="sep">//</span>
+      <span>ANNOUNCEMENT — Recruiting 3D environment artists</span>
+      <span class="sep">//</span>
+    </div>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-panels" aria-hidden="true">
+      <div class="panel p1"></div>
+      <div class="panel p2"></div>
+      <div class="panel p3"></div>
+      <div class="panel p4"></div>
+      <div class="neon-edge e1"></div>
+      <div class="neon-edge e2"></div>
+      <div class="neon-edge e3"></div>
+    </div>
+
+    <div class="hero-content reveal">
+      <div class="eyebrow">INDIE GAME STUDIO · ROBLOX &amp; BEYOND</div>
+      <h1 class="hero-title">
+        WE BUILD<br>
+        <span class="glow-text">WORLDS</span>, NOT<br>
+        JUST GAMES.
+      </h1>
+      <p class="hero-sub">
+        XENO Studio is a small crew shipping fast, weird, and ambitious games — mostly on Roblox, sometimes elsewhere. This is where every build, beta, and behind-the-scenes update lands first.
+      </p>
+      <div class="hero-actions">
+        <a href="#feed" class="btn btn-primary magnetic">
+          <span>See latest announcements</span>
+        </a>
+        <a href="#join" class="btn btn-ghost magnetic">
+          <span>Join the community</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" data-count="4">0</span><span class="stat-label">games shipped</span></div>
+        <div class="stat"><span class="stat-num" data-count="18">0</span><span class="stat-label">million visits</span></div>
+        <div class="stat"><span class="stat-num" data-count="6200">0</span><span class="stat-label">community members</span></div>
+      </div>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-grid">
+      <div class="section-head reveal">
+        <span class="kicker">// 01 — about the studio</span>
+        <h2>Small team. <br>Loud output.</h2>
+      </div>
+      <div class="section-body reveal">
+        <p class="lead">
+          XENO Studio started as a one-person Roblox project and grew into a small distributed team that still ships like one. No quarterly roadmaps nobody reads — just builds, betas, and honest updates, posted as they happen.
+        </p>
+        <div class="about-grid">
+          <div class="about-card glass tilt">
+            <h3>What we make</h3>
+            <p>Action, racing, and social experiences built primarily in Roblox Studio, with experiments in Unity and Godot when a concept needs more room.</p>
+          </div>
+          <div class="about-card glass tilt">
+            <h3>How we work</h3>
+            <p>Public playtests, open patch notes, and a community that shapes direction in real time — not after launch.</p>
+          </div>
+          <div class="about-card glass tilt">
+            <h3>Why the feed matters</h3>
+            <p>Every announcement, win, and delay gets posted here first — before social, before press. This page is the source of truth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANNOUNCEMENTS FEED -->
+  <section class="section section-alt" id="feed">
+    <div class="section-head center reveal">
+      <span class="kicker">// 02 — announcements</span>
+      <h2>The Feed</h2>
+      <p class="muted">Every update we post, in one place. Filter by type or just scroll.</p>
+    </div>
+
+    <div class="feed-filters reveal">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="release">Release</button>
+      <button class="filter-pill" data-filter="update">Update</button>
+      <button class="filter-pill" data-filter="event">Event</button>
+      <button class="filter-pill" data-filter="recruiting">Recruiting</button>
+    </div>
+
+    <div class="feed-list">
+
+      <article class="feed-card glass reveal" data-type="release">
+        <div class="feed-meta">
+          <span class="feed-tag tag-release">Release</span>
+          <span class="feed-date">Jun 17, 2026</span>
+        </div>
+        <h3>Frostbreak Arena — Season 2 is live</h3>
+        <p>New map, ranked ladder, and a full weapon rebalance based on three months of playtest feedback. Patch notes are pinned in #frostbreak-arena.</p>
+        <a href="#projects" class="feed-link">View project →</a>
+      </article>
+
+      <article class="feed-card glass reveal" data-type="event">
+        <div class="feed-meta">
+          <span class="feed-tag tag-event">Event</span>
+          <span class="feed-date">Jun 14, 2026</span>
+        </div>
+        <h3>Rift Runners closed playtest — this weekend</h3>
+        <p>50 slots open for the new traversal racer. Drop a reaction in #playtest-signup and we'll DM keys Friday morning.</p>
+        <a href="#join" class="feed-link">Join the server →</a>
+      </article>
+
+      <article class="feed-card glass reveal" data-type="update">
+        <div class="feed-meta">
+          <span class="feed-tag tag-update">Update</span>
+          <span class="feed-date">Jun 9, 2026</span>
+        </div>
+        <h3>Drift Garage crosses 1.2M visits</h3>
+        <p>Thank you for grinding the leaderboards. A new garage customization update ships next week to celebrate.</p>
+        <a href="#projects" class="feed-link">View project →</a>
+      </article>
+
+      <article class="feed-card glass reveal" data-type="recruiting">
+        <div class="feed-meta">
+          <span class="feed-tag tag-recruiting">Recruiting</span>
+          <span class="feed-date">Jun 3, 2026</span>
+        </div>
+        <h3>Looking for 3D environment artists</h3>
+        <p>Part-time, remote, paid per-asset. Portfolio with low-poly stylized work preferred. Apply in #studio-jobs.</p>
+        <a href="#join" class="feed-link">See requirements →</a>
+      </article>
+
+      <article class="feed-card glass reveal" data-type="update">
+        <div class="feed-meta">
+          <span class="feed-tag tag-update">Update</span>
+          <span class="feed-date">May 28, 2026</span>
+        </div>
+        <h3>Server maintenance window — Jun 21, 02:00 UTC</h3>
+        <p>All live titles will be offline for roughly 40 minutes while we migrate backend infrastructure. No progress will be lost.</p>
+        <a href="#community" class="feed-link">Read details →</a>
+      </article>
+
+    </div>
+
+    <div class="feed-more reveal">
+      <a href="#join" class="btn btn-ghost magnetic"><span>Full announcement history is in Discord →</span></a>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-head center reveal">
+      <span class="kicker">// 03 — projects</span>
+      <h2>What we're building</h2>
+      <p class="muted">Live, in development, and shelved-but-not-forgotten.</p>
+    </div>
+
+    <div class="project-grid">
+
+      <article class="project-card glass tilt reveal">
+        <div class="project-thumb thumb-1"></div>
+        <div class="project-body">
+          <div class="project-top">
+            <h3>Frostbreak Arena</h3>
+            <span class="status status-live">Live</span>
+          </div>
+          <p class="platform">Roblox · PvP Arena Shooter</p>
+          <p>Fast, frosty third-person combat with seasonal ranked play. Our flagship title.</p>
+          <a href="#" class="feed-link">Play on Roblox →</a>
+        </div>
+      </article>
+
+      <article class="project-card glass tilt reveal">
+        <div class="project-thumb thumb-2"></div>
+        <div class="project-body">
+          <div class="project-top">
+            <h3>Drift Garage</h3>
+            <span class="status status-live">Live</span>
+          </div>
+          <p class="platform">Roblox · Racing &amp; Customization</p>
+          <p>Build, tune, and race custom cars across a growing roster of tracks.</p>
+          <a href="#" class="feed-link">Play on Roblox →</a>
+        </div>
+      </article>
+
+      <article class="project-card glass tilt reveal">
+        <div class="project-thumb thumb-3"></div>
+        <div class="project-body">
+          <div class="project-top">
+            <h3>Rift Runners</h3>
+            <span class="status status-beta">In Playtest</span>
+          </div>
+          <p class="platform">Roblox · Traversal Racer</p>
+          <p>A momentum-based runner through fracturing dimensional rifts. Closed beta now.</p>
+          <a href="#feed" class="feed-link">Get playtest access →</a>
+        </div>
+      </article>
+
+      <article class="project-card glass tilt reveal">
+        <div class="project-thumb thumb-4"></div>
+        <div class="project-body">
+          <div class="project-top">
+            <h3>Project Hollow</h3>
+            <span class="status status-dev">In Development</span>
+          </div>
+          <p class="platform">Unity · Co-op Survival</p>
+          <p>Our first non-Roblox title. Early prototyping — details still under wraps.</p>
+          <a href="#community" class="feed-link">Follow progress →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section section-alt" id="team">
+    <div class="section-head center reveal">
+      <span class="kicker">// 04 — team</span>
+      <h2>Who's behind it</h2>
+      <p class="muted">A small crew across time zones, plus a community that ships alongside us.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card glass tilt reveal">
+        <div class="team-avatar av-1"></div>
+        <h3>Kael</h3>
+        <span class="team-role">Founder · Lead Designer</span>
+        <p>Started XENO in a Roblox Studio file at 2am. Still hasn't slept properly since.</p>
+      </div>
+      <div class="team-card glass tilt reveal">
+        <div class="team-avatar av-2"></div>
+        <h3>Mira</h3>
+        <span class="team-role">Lead Artist</span>
+        <p>Builds every environment from a single mood-board image and way too much patience.</p>
+      </div>
+      <div class="team-card glass tilt reveal">
+        <div class="team-avatar av-3"></div>
+        <h3>Tobin</h3>
+        <span class="team-role">Gameplay Programmer</span>
+        <p>If it moves, jumps, or breaks physics, it's probably Tobin's script.</p>
+      </div>
+      <div class="team-card glass tilt reveal">
+        <div class="team-avatar av-4"></div>
+        <h3>Sasha</h3>
+        <span class="team-role">Community Lead</span>
+        <p>Runs the Discord, the polls, and occasionally the patch notes you actually read.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY / TESTIMONIALS -->
+  <section class="section" id="community">
+    <div class="section-head center reveal">
+      <span class="kicker">// 05 — community</span>
+      <h2>What the community's saying</h2>
+    </div>
+
+    <div class="testimonial-grid">
+      <blockquote class="testimonial glass tilt reveal">
+        <p>"They post patch notes the same day a bug gets reported. Never seen a Roblox studio move this fast."</p>
+        <cite>— Discord member, #frostbreak-arena</cite>
+      </blockquote>
+      <blockquote class="testimonial glass tilt reveal">
+        <p>"Got into the Rift Runners playtest and the devs were in voice chat taking notes live. Wild."</p>
+        <cite>— Closed beta tester</cite>
+      </blockquote>
+      <blockquote class="testimonial glass tilt reveal">
+        <p>"Drift Garage update cadence is unmatched. New content basically every two weeks."</p>
+        <cite>— Community member since 2024</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- JOIN / CONTACT -->
+  <section class="section join-section" id="join">
+    <div class="join-panel glass reveal">
+      <div class="join-edge" aria-hidden="true"></div>
+      <span class="kicker">// 06 — join us</span>
+      <h2>Get every update first.</h2>
+      <p class="muted">
+        Announcements, playtest invites, and dev chatter all happen in our Discord before anywhere else. No newsletter, no spam — just the feed, live.
+      </p>
+      <div class="join-actions">
+        <a href="#" class="btn btn-primary magnetic btn-large"><span>Join the Discord</span></a>
+        <a href="#" class="btn btn-ghost magnetic btn-large"><span>Follow on Roblox</span></a>
+      </div>
+      <div class="join-links">
+        <a href="#">Discord</a>
+        <a href="#">Roblox Group</a>
+        <a href="#">YouTube</a>
+        <a href="#">X / Twitter</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-mark">XENO<span class="mark-dim">.STUDIO</span></div>
+    <p class="muted small">Built by the community, for the community. © 2026 XENO Studio.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
